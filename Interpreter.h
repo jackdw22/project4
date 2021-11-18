@@ -19,6 +19,7 @@ public:
     Interpreter(DatalogProgram* datalog);
     void addTuple();
     void addHeader();
+    void doRules(Database* &database);
     Relation* doQuery(Predicate* query);
     std::string queryString(Predicate* query);
     void doQueries();

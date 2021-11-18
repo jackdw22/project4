@@ -16,7 +16,6 @@
 
 class DatalogProgram {
 private:
-    std::vector<Rule*> rules;
     std::string typeList;
     std::set<std::string> domain;
 
@@ -41,6 +40,7 @@ public:
     std::vector<Predicate*> queries;
     std::vector<Predicate*> schemes;
     std::vector<Predicate*> facts;
+    std::vector<Rule*> rules;
 };
 
 

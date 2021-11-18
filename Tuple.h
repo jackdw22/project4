@@ -30,6 +30,9 @@ public:
         return !(*this < rhs);
     }
      */
+    bool operator==(const Tuple &rhs) const{
+        return values == rhs.values;
+    }
 
     std::vector<std::string> values;
 };

@@ -6,27 +6,27 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/james/cs236/236Project3/Automaton.h
+C:/Users/james/cs236/project4/Automaton.h
 Token.h
-C:/Users/james/cs236/236Project3/Token.h
+C:/Users/james/cs236/project4/Token.h
 
-C:/Users/james/cs236/236Project3/Database.h
+C:/Users/james/cs236/project4/Database.h
 map
 -
 string
 -
 Relation.h
-C:/Users/james/cs236/236Project3/Relation.h
+C:/Users/james/cs236/project4/Relation.h
 
-C:/Users/james/cs236/236Project3/DatalogProgram.h
+C:/Users/james/cs236/project4/DatalogProgram.h
 Rule.h
-C:/Users/james/cs236/236Project3/Rule.h
+C:/Users/james/cs236/project4/Rule.h
 Predicate.h
-C:/Users/james/cs236/236Project3/Predicate.h
+C:/Users/james/cs236/project4/Predicate.h
 Token.h
-C:/Users/james/cs236/236Project3/Token.h
+C:/Users/james/cs236/project4/Token.h
 Lexer.h
-C:/Users/james/cs236/236Project3/Lexer.h
+C:/Users/james/cs236/project4/Lexer.h
 iostream
 -
 vector
@@ -36,55 +36,55 @@ set
 stdlib.h
 -
 
-C:/Users/james/cs236/236Project3/Header.h
+C:/Users/james/cs236/project4/Header.h
 vector
 -
 string
 -
 
-C:/Users/james/cs236/236Project3/Interpreter.cpp
+C:/Users/james/cs236/project4/Interpreter.cpp
 Interpreter.h
-C:/Users/james/cs236/236Project3/Interpreter.h
+C:/Users/james/cs236/project4/Interpreter.h
 iostream
 -
 
-C:/Users/james/cs236/236Project3/Interpreter.h
+C:/Users/james/cs236/project4/Interpreter.h
 Parser.h
-C:/Users/james/cs236/236Project3/Parser.h
+C:/Users/james/cs236/project4/Parser.h
 DatalogProgram.h
-C:/Users/james/cs236/236Project3/DatalogProgram.h
+C:/Users/james/cs236/project4/DatalogProgram.h
 Database.h
-C:/Users/james/cs236/236Project3/Database.h
+C:/Users/james/cs236/project4/Database.h
 Relation.h
-C:/Users/james/cs236/236Project3/Relation.h
+C:/Users/james/cs236/project4/Relation.h
 
-C:/Users/james/cs236/236Project3/Lexer.h
+C:/Users/james/cs236/project4/Lexer.h
 vector
 -
 Automaton.h
-C:/Users/james/cs236/236Project3/Automaton.h
+C:/Users/james/cs236/project4/Automaton.h
 Token.h
-C:/Users/james/cs236/236Project3/Token.h
+C:/Users/james/cs236/project4/Token.h
 cctype
 -
 
-C:/Users/james/cs236/236Project3/Parameter.h
+C:/Users/james/cs236/project4/Parameter.h
 string
 -
 iostream
 -
 
-C:/Users/james/cs236/236Project3/Parser.h
+C:/Users/james/cs236/project4/Parser.h
 Token.h
-C:/Users/james/cs236/236Project3/Token.h
+C:/Users/james/cs236/project4/Token.h
 Lexer.h
-C:/Users/james/cs236/236Project3/Lexer.h
+C:/Users/james/cs236/project4/Lexer.h
 Predicate.h
-C:/Users/james/cs236/236Project3/Predicate.h
+C:/Users/james/cs236/project4/Predicate.h
 Rule.h
-C:/Users/james/cs236/236Project3/Rule.h
+C:/Users/james/cs236/project4/Rule.h
 Parameter.h
-C:/Users/james/cs236/236Project3/Parameter.h
+C:/Users/james/cs236/project4/Parameter.h
 vector
 -
 iostream
@@ -92,11 +92,11 @@ iostream
 string
 -
 DatalogProgram.h
-C:/Users/james/cs236/236Project3/DatalogProgram.h
+C:/Users/james/cs236/project4/DatalogProgram.h
 
-C:/Users/james/cs236/236Project3/Predicate.h
+C:/Users/james/cs236/project4/Predicate.h
 Parameter.h
-C:/Users/james/cs236/236Project3/Parameter.h
+C:/Users/james/cs236/project4/Parameter.h
 vector
 -
 iostream
@@ -104,35 +104,37 @@ iostream
 string
 -
 Token.h
-C:/Users/james/cs236/236Project3/Token.h
+C:/Users/james/cs236/project4/Token.h
 Lexer.h
-C:/Users/james/cs236/236Project3/Lexer.h
+C:/Users/james/cs236/project4/Lexer.h
 set
 -
 
-C:/Users/james/cs236/236Project3/Relation.cpp
-Relation.h
-C:/Users/james/cs236/236Project3/Relation.h
-
-C:/Users/james/cs236/236Project3/Relation.h
+C:/Users/james/cs236/project4/Relation.h
 Header.h
-C:/Users/james/cs236/236Project3/Header.h
+C:/Users/james/cs236/project4/Header.h
 Tuple.h
-C:/Users/james/cs236/236Project3/Tuple.h
+C:/Users/james/cs236/project4/Tuple.h
 Predicate.h
-C:/Users/james/cs236/236Project3/Predicate.h
+C:/Users/james/cs236/project4/Predicate.h
 string
 -
 set
 -
 iostream
+-
+algorithm
+-
+stdio.h
+-
+ctype.h
 -
 map
 -
 
-C:/Users/james/cs236/236Project3/Rule.h
+C:/Users/james/cs236/project4/Rule.h
 Predicate.h
-C:/Users/james/cs236/236Project3/Predicate.h
+C:/Users/james/cs236/project4/Predicate.h
 iostream
 -
 vector
@@ -140,37 +142,17 @@ vector
 string
 -
 Lexer.h
-C:/Users/james/cs236/236Project3/Lexer.h
+C:/Users/james/cs236/project4/Lexer.h
 Token.h
-C:/Users/james/cs236/236Project3/Token.h
+C:/Users/james/cs236/project4/Token.h
 
-C:/Users/james/cs236/236Project3/Token.h
+C:/Users/james/cs236/project4/Token.h
 string
 -
 
-C:/Users/james/cs236/236Project3/Tuple.h
+C:/Users/james/cs236/project4/Tuple.h
 vector
 -
 string
 -
-
-C:/Users/james/cs236/236Project3/main.cpp
-Lexer.h
-C:/Users/james/cs236/236Project3/Lexer.h
-Parser.h
-C:/Users/james/cs236/236Project3/Parser.h
-Relation.h
-C:/Users/james/cs236/236Project3/Relation.h
-string
--
-vector
--
-iostream
--
-fstream
--
-sstream
--
-Interpreter.h
-C:/Users/james/cs236/236Project3/Interpreter.h
 

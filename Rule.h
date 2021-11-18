@@ -14,9 +14,10 @@
 
 class Rule {
 private:
+
+public:
     Predicate* headPredicate;
     std::vector<Predicate*> bodyPredicates;
-public:
     Rule(Predicate* headPredicate);
     void ruleParser(std::vector <Token*>& tokens);
     void COMMA (std::vector <Token*>& tokens);

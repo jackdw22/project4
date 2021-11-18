@@ -78,7 +78,7 @@ std::string DatalogProgram::printDomain() {
 std::string DatalogProgram::rulesOutput() {
     std::string output = "";
     for (int i = 0; i < static_cast<int>(rules.size()); i++) {
-        output += "  " + rules.at(i)->ruleOutput();
+        output += rules.at(i)->ruleOutput();
     }
     return output;
 }
