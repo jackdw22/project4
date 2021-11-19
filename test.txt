@@ -1,39 +1,32 @@
-Schemes:
-A(a,b)
-rA(a,b)
-Reflexive(a,b)
 
-colB(b)
-Symmetric(a,b)
-Transitive(a,b)
-SymTran(a,b)
+
+Schemes:
+  a(x)
+  b(x)
+  c(x)
+  d(x)
+  e(x)
+  f(x)
+  g(x)
+  h(x)
+  i(x)
+  j(x)
 
 Facts:
-A('1','2').
-A('2','3').
-A('3','4').
-A('4','5').
-A('5','6').
-A('6','7').
-A('7','8').
-A('8','9').
-A('9','10').
+  a('a').
 
 Rules:
-Symmetric(X,Y) :- A(X,Y).
-Symmetric(X,Y) :- Symmetric(Y,X).
-rA(a,b) :- A(b,a).
-Reflexive(X,Y) :- A(X,Z),rA(Z,Y).
-Transitive(X,Y) :- A(X,Y).
-Transitive(X,Z) :- Transitive(X,Y),Transitive(Y,Z).
-SymTran(X,Y) :- SymTran(Y,X).
-SymTran(X,Z) :- SymTran(X,Y),SymTran(Y,Z).
-SymTran(X,Y) :- A(Y,X).
+  j(x) :- i(x).
+  i(x) :- h(x).
+  h(x) :- g(x).
+  g(x) :- f(x).
+  f(x) :- e(x).
+  e(x) :- d(x).
+  d(x) :- c(x).
+  c(x) :- b(x).
+  b(x) :- a(x).
 
 Queries:
-Symmetric(Q,R)?
-Reflexive(Q,R)?
-Transitive('1',P)?
-A('1','2')?
-Symmetric('2','1')?
-SymTran(X,Y)?
+  j('a')?
+
+

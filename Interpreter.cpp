@@ -166,7 +166,10 @@ void Interpreter::doQueries(){
 void Interpreter::doRules(Database* &database1){
     std::cout << "Rule Evaluation" << std::endl;
     int count1 = 0;
-    for (int i = 0; i < static_cast<int> (datalog->rules.size()); i++){
+    int i = 0;
+    for (int k = 0; k < static_cast<int> (datalog->rules.size()); k++){
+
+        std::cout << datalog->rules.at(i)->ruleOutput();
         std::string ruleName = datalog->rules.at(i)->headPredicate->namePredicate;
         std::string name = datalog->rules.at(i)->bodyPredicates.at(0)->namePredicate;
         Relation* startRelation;
@@ -179,9 +182,9 @@ void Interpreter::doRules(Database* &database1){
             Relation *nextRelation;
             Relation *combined;
             std::string name2 = datalog->rules.at(i)->bodyPredicates.at(j)->namePredicate;
-            for (auto i : database->data) {
-                if (i.first == name2) {
-                    nextRelation = i.second;
+            for (auto itr : database->data) {
+                if (itr.first == name2) {
+                    nextRelation = itr.second;
                 }
             }
             combined = startRelation->unite(nextRelation, ruleName);
@@ -219,28 +222,42 @@ void Interpreter::doRules(Database* &database1){
         for (auto itr : database1->data){
             if(itr.first == ruleName){
                 if(itr.second->tuples == startRelation->tuples){
-                    if(startRelation->tuples.size() > 0){
-                        std::cout << datalog->rules.at(i)->ruleOutput();
-                    }
-                    updated = false;
 
+                    updated = false;
+                    //std::cout << startRelation->toString(upper);
+                }else{
                     std::cout << startRelation->toString(upper);
+                    count1++;
                 }
+
                 itr.second->tuples = startRelation->tuples;
+
             }
         }
 
 
 
 
+
         if(updated){
-            i = -1;
+            k = -1;
+        }
+        i++;
+        if(k == static_cast<int> (datalog->rules.size()) -1 && i == 1) {
+            k = 0;
+            count1++;
+        }
+
+        if(i == static_cast<int> (datalog->rules.size())) {
+            i = 0;
         }
 
 
-        count1++;
+
+
+
     }
-    std::cout << datalog->rulesOutput() << std::endl;
+    //std::cout << datalog->rulesOutput() << std::endl;
     std::cout << "Schemes populated after " << count1 << " passes through the Rules.";
     std::cout << std::endl << std::endl;
 }
