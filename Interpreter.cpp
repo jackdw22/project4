@@ -165,6 +165,7 @@ void Interpreter::doQueries(){
 
 void Interpreter::doRules(Database* &database1){
     std::cout << "Rule Evaluation" << std::endl;
+    int count1 = 0;
     for (int i = 0; i < static_cast<int> (datalog->rules.size()); i++){
         std::string ruleName = datalog->rules.at(i)->headPredicate->namePredicate;
         std::string name = datalog->rules.at(i)->bodyPredicates.at(0)->namePredicate;
@@ -213,14 +214,16 @@ void Interpreter::doRules(Database* &database1){
         bool updated = false;
         startRelation = startRelation->project2(startRelation, datalog->rules.at(i)->headPredicate, order, place);
         if (startRelation->tuples.size() > 0){
-
             updated = true;
         }
         for (auto itr : database1->data){
             if(itr.first == ruleName){
                 if(itr.second->tuples == startRelation->tuples){
+                    if(startRelation->tuples.size() > 0){
+                        std::cout << datalog->rules.at(i)->ruleOutput();
+                    }
                     updated = false;
-                    std::cout << datalog->rules.at(i)->ruleOutput();
+
                     std::cout << startRelation->toString(upper);
                 }
                 itr.second->tuples = startRelation->tuples;
@@ -235,9 +238,9 @@ void Interpreter::doRules(Database* &database1){
         }
 
 
-
+        count1++;
     }
     std::cout << datalog->rulesOutput() << std::endl;
-    std::cout << "Schemes populated after " << datalog->rules.size() << " passes through the Rules.";
+    std::cout << "Schemes populated after " << count1 << " passes through the Rules.";
     std::cout << std::endl << std::endl;
 }

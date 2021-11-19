@@ -1,23 +1,39 @@
 Schemes:
-  snap(S,N,A,P)
-  csg(C,S,G)
-  cn(C,N)
-  ncg(N,C,G)
+A(a,b)
+rA(a,b)
+Reflexive(a,b)
+
+colB(b)
+Symmetric(a,b)
+Transitive(a,b)
+SymTran(a,b)
 
 Facts:
-  snap('12345','C. Brown','12 Apple St.','555-1234').
-  snap('22222','P. Patty','56 Grape Blvd','555-9999').
-  snap('33333','Snoopy','12 Apple St.','555-1234').
-  csg('CS101','12345','A').
-  csg('CS101','22222','B').
-  csg('CS101','33333','C').
-  csg('EE200','12345','B+').
-  csg('EE200','22222','B').
+A('1','2').
+A('2','3').
+A('3','4').
+A('4','5').
+A('5','6').
+A('6','7').
+A('7','8').
+A('8','9').
+A('9','10').
 
 Rules:
-  cn(c,n) :- snap(S,n,A,P),csg(c,S,G).
-  ncg(n,c,g) :- snap(S,n,A,P),csg(c,S,g).
+Symmetric(X,Y) :- A(X,Y).
+Symmetric(X,Y) :- Symmetric(Y,X).
+rA(a,b) :- A(b,a).
+Reflexive(X,Y) :- A(X,Z),rA(Z,Y).
+Transitive(X,Y) :- A(X,Y).
+Transitive(X,Z) :- Transitive(X,Y),Transitive(Y,Z).
+SymTran(X,Y) :- SymTran(Y,X).
+SymTran(X,Z) :- SymTran(X,Y),SymTran(Y,Z).
+SymTran(X,Y) :- A(Y,X).
 
 Queries:
-  cn('CS101',Name)?
-  ncg('Snoopy',Course,Grade)?
+Symmetric(Q,R)?
+Reflexive(Q,R)?
+Transitive('1',P)?
+A('1','2')?
+Symmetric('2','1')?
+SymTran(X,Y)?
