@@ -118,6 +118,21 @@ Relation* Relation::project(Relation *relation, Predicate *&query, std::map<std:
     //std::cout << newRelation->toString() << std::endl;
     return newRelation;
 }
+Relation* Relation::copy(Relation *relation) {
+    Header* newHeader = new Header();
+
+    for (int i = 0; i < static_cast<int>(relation->header->values.size()); i++){
+        newHeader->values.push_back(relation->header->values.at(i));
+    }
+    Relation* newRelation = new Relation(relation->name, newHeader);
+    for (Tuple t : relation->tuples){
+        newRelation->addTuple(t);
+    }
+    //std::cout << "project is a go" << std::endl;
+    //std::cout << newRelation->toString() << std::endl;
+    return newRelation;
+}
+
 Relation* Relation::project2(Relation *relation, Predicate *&query, std::vector<std::string>order, std::vector <int> place) {
     Header* newHeader = new Header();
 

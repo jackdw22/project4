@@ -19,3 +19,11 @@ bool Parameter::isConstant() {
         return false;
     }
 }
+
+bool Parameter::isCapital() {
+ if(isupper(para[0])){
+     return true;
+ }else {
+     return false;
+ }
+}

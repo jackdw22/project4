@@ -6,6 +6,7 @@
 #define PARAMETER_H
 #include <string>
 #include <iostream>
+#include <cctype>
 
 
 class Parameter {
@@ -16,6 +17,7 @@ public:
     Parameter(std::string para);
     std::string getParameter();
     bool isConstant();
+    bool isCapital();
 };
 
 

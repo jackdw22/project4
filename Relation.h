@@ -29,6 +29,7 @@ public:
     Relation* project(Relation* relation, Predicate* &query, std::map<std::string, int> variables);
     Relation* project2(Relation* relation, Predicate* &query, std::vector<std::string>order, std::vector<int> place);
     Relation* unite(Relation* relation, std::string name);
+    Relation* copy(Relation* relation);
 private:
 
 

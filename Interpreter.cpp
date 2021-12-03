@@ -164,79 +164,144 @@ void Interpreter::doQueries(){
 }
 
 void Interpreter::doRules(Database* &database1){
+    std::vector<Relation*> ruleCheck; // create away to check them
     std::cout << "Rule Evaluation" << std::endl;
     int count1 = 0;
     int i = 0;
+
     for (int k = 0; k < static_cast<int> (datalog->rules.size()); k++){
 
         std::cout << datalog->rules.at(i)->ruleOutput();
         std::string ruleName = datalog->rules.at(i)->headPredicate->namePredicate;
         std::string name = datalog->rules.at(i)->bodyPredicates.at(0)->namePredicate;
         Relation* startRelation;
+        Relation* copyRelation;
+        std::vector<std::string> order2;
         for (auto i : database->data){
             if(i.first == name){
-                startRelation = i.second;
+                copyRelation = i.second;
+                startRelation = copyRelation;
+            }
+        }
+
+        if (datalog->rules.at(i)->bodyPredicates.size() > 1){
+            for(int j = 0; j < static_cast<int>(datalog->rules.at(i)->bodyPredicates.at(0)->parameters.size()); j++){
+                order2.push_back(startRelation->header->values.at(j));
+                startRelation->header->values.at(j) = datalog->rules.at(
+                        i)->bodyPredicates.at(0)->parameters.at(j)->getParameter();
             }
         }
         for (int j = 1; j < static_cast<int>(datalog->rules.at(i)->bodyPredicates.size()) ; j++) {
-            Relation *nextRelation;
             Relation *combined;
             std::string name2 = datalog->rules.at(i)->bodyPredicates.at(j)->namePredicate;
+
             for (auto itr : database->data) {
                 if (itr.first == name2) {
-                    nextRelation = itr.second;
+                    Relation *nextRelation = itr.second->copy(itr.second);
+                    for(int l = 0; l < static_cast<int>(datalog->rules.at(i)->bodyPredicates.at(j)->parameters.size()); l++){
+                        nextRelation->header->values.at(l) = datalog->rules.at(
+                                i)->bodyPredicates.at(j)->parameters.at(l)->getParameter();
+                    }
+
+                    combined = startRelation->unite(nextRelation, ruleName);
+
+                    startRelation = combined;
                 }
             }
-            combined = startRelation->unite(nextRelation, ruleName);
-            startRelation = combined;
+
         }
+        if (datalog->rules.at(i)->bodyPredicates.size() > 1){
+            for(int j = 0; j < static_cast<int>(datalog->rules.at(i)->bodyPredicates.at(0)->parameters.size()); j++){
+                copyRelation->header->values.at(j) = order2.at(j);
+                startRelation->header->values.at(j) = order2.at(j);
+            }
+        }
+
+
+
         std::map<std::string, int> variables;
         std::vector<std::string> order;
         std::vector<int> place;
         int countVariables = 0;
         int upper = 0;
 
-        for (int j = 0; j < datalog->rules.at(i)->headPredicate->parameters.size(); j++){
-            if(datalog->rules.at(i)->headPredicate->parameters.at(j)->isConstant() == false){
+
+        for (int j = 0; j < datalog->rules.at(i)->headPredicate->parameters.size(); j++) {
+            if (datalog->rules.at(i)->headPredicate->parameters.at(j)->isConstant() == false &&
+                datalog->rules.at(i)->headPredicate->parameters.at(j)->isCapital() == false) {
                 variables.insert({datalog->rules.at(i)->headPredicate->parameters.at(j)->getParameter(), j});
                 order.push_back(datalog->rules.at(i)->headPredicate->parameters.at(j)->getParameter());
                 countVariables++;
+            } else if (datalog->rules.at(i)->headPredicate->parameters.at(j)->isConstant() == false &&
+                       datalog->rules.at(i)->headPredicate->parameters.at(j)->isCapital() == true) {
+                order.push_back(startRelation->header->values.at(j));
             }
+        }
+        for(int j = 0; j < static_cast<int>(datalog->rules.at(i)->bodyPredicates.at(0)->parameters.size()); j++){
+            startRelation->header->values.at(j) = datalog->rules.at(
+                    i)->bodyPredicates.at(0)->parameters.at(j)->getParameter();
+        }
+        for (int j = 0; j < datalog->rules.at(i)->headPredicate->parameters.size(); j++) {
             for(int l = 0; l < static_cast<int> (startRelation->header->values.size()); l++){
-                if(toupper(datalog->rules.at(i)->headPredicate->parameters.at(j)->getParameter()[0]) == startRelation->header->values.at(l)[0]){
+                if(datalog->rules.at(i)->headPredicate->parameters.at(j)->getParameter() == startRelation->header->values.at(l)){
+                    place.push_back(l);
+                }
+                else if(toupper(datalog->rules.at(i)->headPredicate->parameters.at(j)->getParameter()[0]) == startRelation->header->values.at(l)[0]){
                     place.push_back(l);
                     upper = 1;
-                }else if(datalog->rules.at(i)->headPredicate->parameters.at(j)->getParameter() == startRelation->header->values.at(l)){
-                    place.push_back(l);
-                }else if(tolower(datalog->rules.at(i)->headPredicate->parameters.at(j)->getParameter()[0]) == startRelation->header->values.at(l)[0]){
+                }else if(tolower(datalog->rules.at(i)->headPredicate->parameters.at(j)->getParameter()[0]) == startRelation->header->values.at(l)[0]) {
                     place.push_back(l);
                     upper = 2;
                 }
             }
         }
+
+        if(startRelation->header->values.size() == order.size()) {
+            for (int j = 0; j < static_cast<int>(datalog->rules.at(i)->bodyPredicates.at(0)->parameters.size()); j++) {
+                startRelation->header->values.at(j) = order.at(j);
+            }
+        }
+
         bool updated = false;
         startRelation = startRelation->project2(startRelation, datalog->rules.at(i)->headPredicate, order, place);
+
         if (startRelation->tuples.size() > 0){
             updated = true;
         }
+        if(ruleCheck.size() < datalog->rules.size()){
+            ruleCheck.push_back(startRelation);
+            std::cout << startRelation->toString(upper);
+        }else{
+            if (ruleCheck.at(k)->tuples == startRelation->tuples){
+                updated = false;
+            }else{
+                count1++;
+                ruleCheck.at(k)->tuples = startRelation->tuples;
+                std::cout << startRelation->toString(upper);
+            }
+        }
+
         for (auto itr : database1->data){
             if(itr.first == ruleName){
+                /*
                 if(itr.second->tuples == startRelation->tuples){
 
                     updated = false;
                     //std::cout << startRelation->toString(upper);
                 }else{
-                    std::cout << startRelation->toString(upper);
+                    //std::cout << startRelation->toString(upper); this is the good one
                     count1++;
                 }
-
+                 */
                 itr.second->tuples = startRelation->tuples;
-
             }
         }
-
-
-
+    /*
+        for (int i = 0; i < ruleCheck.size(); i++){
+            std::cout << i << std::endl;
+            std::cout << ruleCheck.at(i)->toString(upper);
+        }
+     */
 
 
         if(updated){
