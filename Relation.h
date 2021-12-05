@@ -24,9 +24,8 @@ public:
     void addTuple(Tuple tuple);
     std::string toString(int upper);
     Relation* select(Relation* relation, Predicate* &query, int count);
-    Relation* select2(Relation* relation, Predicate* &query, int count);
     Relation* selectDuplicates(Relation* relation, Predicate* &query);
-    Relation* project(Relation* relation, Predicate* &query, std::map<std::string, int> variables);
+    Relation* project(Relation* relation, Predicate* &query, std::vector<std::string>order,  std::map<std::string, int> variables);
     Relation* project2(Relation* relation, Predicate* &query, std::vector<std::string>order, std::vector<int> place);
     Relation* unite(Relation* relation, std::string name);
     Relation* copy(Relation* relation);

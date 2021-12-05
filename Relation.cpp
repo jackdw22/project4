@@ -101,17 +101,17 @@ Relation* Relation::selectDuplicates(Relation *relation, Predicate *&query) {
     return newRelation;
 }
 
-Relation* Relation::project(Relation *relation, Predicate *&query, std::map<std::string, int> variables) {
+Relation* Relation::project(Relation *relation, Predicate *&query, std::vector<std::string>order,  std::map<std::string, int> variables) {
     Header* newHeader = new Header();
 
-    for (auto itr = variables.begin(); itr != variables.end(); itr++){
-        newHeader->values.push_back(query->parameters.at(itr->second)->getParameter());
+    for (int i = 0; i < static_cast<int>(order.size()); i++){
+        newHeader->values.push_back(order.at(i));
     }
     Relation* newRelation = new Relation(query->namePredicate, newHeader);
     for (Tuple t : relation->tuples){
         Tuple newTuple;
-        for (auto itr = variables.begin(); itr != variables.end(); itr++){
-            newTuple.values.push_back(t.values.at(itr->second));
+        for (int i = 0; i < static_cast<int>(order.size()); i++){
+            newTuple.values.push_back(t.values.at(variables.at(order.at(i))));
 
         }
         newRelation->addTuple(newTuple);

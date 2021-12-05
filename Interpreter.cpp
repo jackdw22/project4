@@ -121,7 +121,7 @@ Relation* Interpreter::doQuery(Predicate* query) {
 
         if(countVariables != 0){
             //std::cout << query->parameters.size();
-            outputRelation = outputRelation->project(outputRelation, query, variables);
+            outputRelation = outputRelation->project(outputRelation, query, order, variables);
         }
 
         return  outputRelation;
