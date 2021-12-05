@@ -17,13 +17,13 @@ doQueries();
 }
 
 void Interpreter::addHeader() {
-    for (int i = 0; i < datalog->schemes.size(); i++){
+    for (int i = 0; i < static_cast<int>( datalog->schemes.size()); i++){
         //std::cout << "in the addheader for loop" << std::endl;
         Header* header = new Header();
-        for (int j = 0; j < datalog->schemes.at(i)->parameters.size(); j++){
+        for (int j = 0; j <static_cast<int>( datalog->schemes.at(i)->parameters.size()); j++){
             header->values.push_back(datalog->schemes.at(i)->parameters.at(j)->getParameter());
         }
-        for (int z = 0; z < header->values.size(); z++ ) {
+        for (int z = 0; z <static_cast<int>( header->values.size()); z++ ) {
             //std::cout << header->values.at(z) << std::endl;
         }
         Relation* relation = new Relation(datalog->schemes.at(i)->namePredicate, header);
@@ -33,11 +33,11 @@ void Interpreter::addHeader() {
 
 void Interpreter::addTuple() {
     //std::cout << "in add Tuple" << std::endl;
-    for (int i = 0; i < datalog->facts.size(); i++){
+    for (int i = 0; i < static_cast<int>(datalog->facts.size()); i++){
         std::string tName = datalog->facts.at(i)->namePredicate;
         //std::cout << tName << std::endl;
         Tuple tuple;
-        for (int j = 0; j < datalog->facts.at(i)->parameters.size(); j++ ){
+        for (int j = 0; j <static_cast<int>( datalog->facts.at(i)->parameters.size()); j++ ){
             tuple.values.push_back(datalog->facts.at(i)->parameters.at(j)->getParameter());
         }
         for (auto itr = database->data.find(tName); itr == database->data.find(tName);itr++){
@@ -75,7 +75,7 @@ Relation* Interpreter::doQuery(Predicate* query) {
     std::vector<std::string> order;
     int countVariables = 0;
 
-    for (int i = 0; i < query->parameters.size(); i++){
+    for (int i = 0; i < static_cast<int>(query->parameters.size()); i++){
         if(query->parameters.at(i)->isConstant() == false){
             variables.insert({query->parameters.at(i)->getParameter(), i});
             order.push_back(query->parameters.at(i)->getParameter());
@@ -87,14 +87,14 @@ Relation* Interpreter::doQuery(Predicate* query) {
     int countConstants = 0;
     int countSelects = 0;
     int countDuplicates = 0;
-    for (int i = 0; i < query->parameters.size(); i++){
+    for (int i = 0; i <static_cast<int>( query->parameters.size()); i++){
         if(query->parameters.at(i)->isConstant() == true){
             countConstants++;
         }
     }
-    for (int i = 0; i < query->parameters.size(); i++){
+    for (int i = 0; i < static_cast<int>(query->parameters.size()); i++){
         if (query->parameters.at(i)->isConstant() == false){
-            for (int j = i + 1; j <query->parameters.size(); j++){
+            for (int j = i + 1; j < static_cast<int>(query->parameters.size()); j++){
                 if(query->parameters.at(j)->getParameter() == query->parameters.at(i)->getParameter()){
                     countDuplicates++;
                 }
@@ -130,7 +130,7 @@ std::string Interpreter::queryString(Predicate* query) {
     int upper = 0;
     output += query->namePredicate;
     output += '(';
-    for (int i = 0; i < query->parameters.size(); i++){
+    for (int i = 0; i <static_cast<int>( query->parameters.size()); i++){
         if(query->parameters.at(i)->isConstant() == false){
             isVariable = true;
         }
@@ -222,11 +222,10 @@ std::vector<Relation*> Interpreter::doRules(Database* &database1){
         std::map<std::string, int> variables;
         std::vector<std::string> order;
         std::vector<int> place;
-        int countVariables = 0;
-        int upper = 0;
+
 
         Relation* selectRelation = new Relation(startRelation->name, startRelation->header);
-        for (int j = 0; j < datalog->rules.at(i)->bodyPredicates.at(0)->parameters.size(); j++) {
+        for (int j = 0; j < static_cast<int>(datalog->rules.at(i)->bodyPredicates.at(0)->parameters.size()); j++) {
             if(datalog->rules.at(i)->bodyPredicates.at(0)->parameters.at(j)->isConstant() == true){
                 for(auto t : startRelation->tuples){
                     if(datalog->rules.at(i)->bodyPredicates.at(0)->parameters.at(j)->getParameter() == t.values.at(j)){
@@ -252,7 +251,7 @@ std::vector<Relation*> Interpreter::doRules(Database* &database1){
             startRelation->header->values.at(j) = datalog->rules.at(
                     i)->bodyPredicates.at(0)->parameters.at(j)->getParameter();
         }
-        for (int j = 0; j < datalog->rules.at(i)->headPredicate->parameters.size(); j++) {
+        for (int j = 0; j <static_cast<int>( datalog->rules.at(i)->headPredicate->parameters.size()); j++) {
             for(int l = 0; l < static_cast<int> (startRelation->header->values.size()); l++){
                 if(datalog->rules.at(i)->headPredicate->parameters.at(j)->getParameter() == startRelation->header->values.at(l)){
                     place.push_back(l);
@@ -320,7 +319,7 @@ void Interpreter::checkRules(){
     std::cout << "Rule Evaluation" << std::endl;
     int count = 0;
     rule = doRules(this->database);
-    for (int r = 0; r < rule.size(); r++){
+    for (int r = 0; r < static_cast<int>(rule.size()); r++){
         std::cout << datalog->rules.at(r)->ruleOutput();
         if (rule.at(r)->tuples.size() > 0){
             std::cout << rule.at(r)->toString(0);
