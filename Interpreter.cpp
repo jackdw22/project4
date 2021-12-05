@@ -122,6 +122,7 @@ Relation* Interpreter::doQuery(Predicate* query) {
             //std::cout << query->parameters.size();
             outputRelation = outputRelation->project(outputRelation, query, variables);
         }
+        output = outputRelation; 
         return  outputRelation;
 
     }

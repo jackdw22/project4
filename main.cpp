@@ -91,7 +91,7 @@ int main(int argc, char** argv) {
 
     Interpreter* interpreter = new Interpreter(parser->Datalog);
 
-    interpreter->go(); 
+    interpreter->go();
 
 
 

@@ -158,23 +158,3 @@ vector
 string
 -
 
-C:/Users/james/cs236/project4/main.cpp
-Lexer.h
-C:/Users/james/cs236/project4/Lexer.h
-Parser.h
-C:/Users/james/cs236/project4/Parser.h
-Relation.h
-C:/Users/james/cs236/project4/Relation.h
-string
--
-vector
--
-iostream
--
-fstream
--
-sstream
--
-Interpreter.h
-C:/Users/james/cs236/project4/Interpreter.h
-
