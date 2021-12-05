@@ -108,6 +108,8 @@ Relation* Interpreter::doQuery(Predicate* query) {
     }
     for (auto itr = database->data.find(qName); itr != database->data.end(); itr++) {
         Relation* outputRelation = new Relation(itr->first, itr->second->header);
+        output = new Relation(itr->first, itr->second->header);
+        output = itr->second;
         outputRelation = itr->second;
         for (int j = 0; j < countConstants; j++){
             outputRelation = outputRelation->select(outputRelation, query, countSelects);
@@ -122,7 +124,7 @@ Relation* Interpreter::doQuery(Predicate* query) {
             //std::cout << query->parameters.size();
             outputRelation = outputRelation->project(outputRelation, query, variables);
         }
-        output = outputRelation; 
+
         return  outputRelation;
 
     }
