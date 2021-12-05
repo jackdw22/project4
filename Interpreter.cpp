@@ -78,7 +78,7 @@ Relation* Interpreter::doQuery(Predicate* query) {
     std::map<std::string, int> variables;
     std::vector<std::string> order;
     int countVariables = 0;
-    Relation* output;
+    Relation* outputRelation; 
 
     for (int i = 0; i < static_cast<int>(query->parameters.size()); i++){
         if(query->parameters.at(i)->isConstant() == false){
@@ -107,9 +107,7 @@ Relation* Interpreter::doQuery(Predicate* query) {
         }
     }
     for (auto itr = database->data.find(qName); itr != database->data.end(); itr++) {
-        Relation* outputRelation = new Relation(itr->first, itr->second->header);
-        output = new Relation(itr->first, itr->second->header);
-        output = itr->second;
+        outputRelation = new Relation(itr->first, itr->second->header);
         outputRelation = itr->second;
         for (int j = 0; j < countConstants; j++){
             outputRelation = outputRelation->select(outputRelation, query, countSelects);
@@ -129,7 +127,7 @@ Relation* Interpreter::doQuery(Predicate* query) {
 
     }
 
-    return output;
+    return outputRelation;
 }
 
 std::string Interpreter::queryString(Predicate* query) {
