@@ -16,13 +16,15 @@ std::string Relation::toString(int upper) {
        // std::cout << "in to tuple loop" << std::endl;
        output += "  ";
         for (int i = 0; i < static_cast<int>(header->values.size()); i++){
+            /*
             if(upper == 1){
                 output += toupper(header->values.at(i)[0]);
             }else if (upper == 2){
                 output += tolower(header->values.at(i)[0]);
             }else {
-                output += header->values.at(i);
-            }
+             */
+            output += header->values.at(i);
+
 
             output += "=";
             output += t.values.at(i);
@@ -136,8 +138,8 @@ Relation* Relation::copy(Relation *relation) {
 Relation* Relation::project2(Relation *relation, Predicate *&query, std::vector<std::string>order, std::vector <int> place) {
     Header* newHeader = new Header();
 
-    for(int i = 0; i < static_cast<int>(order.size());i++){
-        newHeader->values.push_back(order.at(i));
+    for(int i = 0; i < static_cast<int>(place.size());i++){
+        newHeader->values.push_back(header->values.at(place.at(i)));
     }
     Relation* newRelation = new Relation(query->namePredicate, newHeader);
     for (Tuple t : relation->tuples){
