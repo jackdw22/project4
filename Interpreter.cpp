@@ -87,7 +87,7 @@ Relation* Interpreter::doQuery(Predicate* query) {
             countVariables++;
         }
     }
-    Relation* outputRelation = new Relation(database->data.at("Grades")->name, database->data.at("Grades")->header); 
+    Relation* outputRelation = new Relation(database->data.at(datalog->schemes.at(0)->namePredicate)->name, database->data.at(datalog->schemes.at(0)->namePredicate)->header);
     Predicate* queryCopy = new Predicate(query->namePredicate, query->type);
     queryCopy = query;
     int countConstants = 0;
