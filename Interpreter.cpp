@@ -8,12 +8,16 @@
 Interpreter::Interpreter(DatalogProgram* datalog) {
 this->datalog = datalog;
 this->database = new Database();
-addHeader();
-addTuple();
-checkRules();
-doQueries();
+
 //std::cout << queryString(datalog->queries.at(1)) << std::endl;
 
+}
+
+void Interpreter::go(){
+    addHeader();
+    addTuple();
+    checkRules();
+    doQueries();
 }
 
 void Interpreter::addHeader() {
@@ -74,6 +78,7 @@ Relation* Interpreter::doQuery(Predicate* query) {
     std::map<std::string, int> variables;
     std::vector<std::string> order;
     int countVariables = 0;
+    Relation* output;
 
     for (int i = 0; i < static_cast<int>(query->parameters.size()); i++){
         if(query->parameters.at(i)->isConstant() == false){
@@ -117,11 +122,11 @@ Relation* Interpreter::doQuery(Predicate* query) {
             //std::cout << query->parameters.size();
             outputRelation = outputRelation->project(outputRelation, query, variables);
         }
-        return outputRelation;
+        return  outputRelation;
 
     }
 
-
+    return output;
 }
 
 std::string Interpreter::queryString(Predicate* query) {
@@ -331,7 +336,7 @@ void Interpreter::checkRules(){
         std::vector <Relation*> newRule;
         newRule = doRules(this->database);
         again = true;
-        for (int r = 0; r < rule.size(); r++){
+        for (int r = 0; r < static_cast<int>(rule.size()); r++){
             if(newRule.at(r)->tuples.size() == 0){
                 std::cout << datalog->rules.at(r)->ruleOutput();
             }else{

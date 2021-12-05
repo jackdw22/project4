@@ -24,6 +24,7 @@ public:
     std::string queryString(Predicate* query);
     void doQueries();
     void checkRules();
+    void go();
 
 };
 
