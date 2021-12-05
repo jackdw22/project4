@@ -78,7 +78,7 @@ Relation* Interpreter::doQuery(Predicate* query) {
     std::map<std::string, int> variables;
     std::vector<std::string> order;
     int countVariables = 0;
-    Relation* outputRelation; 
+
 
     for (int i = 0; i < static_cast<int>(query->parameters.size()); i++){
         if(query->parameters.at(i)->isConstant() == false){
@@ -87,6 +87,7 @@ Relation* Interpreter::doQuery(Predicate* query) {
             countVariables++;
         }
     }
+    Relation* outputRelation = new Relation(database->data.at("Grades")->name, database->data.at("Grades")->header); 
     Predicate* queryCopy = new Predicate(query->namePredicate, query->type);
     queryCopy = query;
     int countConstants = 0;
