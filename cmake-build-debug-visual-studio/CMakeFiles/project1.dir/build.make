@@ -669,6 +669,44 @@ CMakeFiles\project1.dir\DatalogProgram.cpp.s: cmake_force
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\project1.dir\DatalogProgram.cpp.s /c C:\Users\james\cs236\project4\DatalogProgram.cpp
 <<
 
+CMakeFiles\project1.dir\graph.cpp.obj: CMakeFiles\project1.dir\flags.make
+CMakeFiles\project1.dir\graph.cpp.obj: ..\graph.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\james\cs236\project4\cmake-build-debug-visual-studio\CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/project1.dir/graph.cpp.obj"
+	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\project1.dir\graph.cpp.obj /FdCMakeFiles\project1.dir\ /FS -c C:\Users\james\cs236\project4\graph.cpp
+<<
+
+CMakeFiles\project1.dir\graph.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/project1.dir/graph.cpp.i"
+	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe > CMakeFiles\project1.dir\graph.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\james\cs236\project4\graph.cpp
+<<
+
+CMakeFiles\project1.dir\graph.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/project1.dir/graph.cpp.s"
+	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\project1.dir\graph.cpp.s /c C:\Users\james\cs236\project4\graph.cpp
+<<
+
+CMakeFiles\project1.dir\ruleNode.cpp.obj: CMakeFiles\project1.dir\flags.make
+CMakeFiles\project1.dir\ruleNode.cpp.obj: ..\ruleNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\james\cs236\project4\cmake-build-debug-visual-studio\CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/project1.dir/ruleNode.cpp.obj"
+	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\project1.dir\ruleNode.cpp.obj /FdCMakeFiles\project1.dir\ /FS -c C:\Users\james\cs236\project4\ruleNode.cpp
+<<
+
+CMakeFiles\project1.dir\ruleNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/project1.dir/ruleNode.cpp.i"
+	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe > CMakeFiles\project1.dir\ruleNode.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\james\cs236\project4\ruleNode.cpp
+<<
+
+CMakeFiles\project1.dir\ruleNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/project1.dir/ruleNode.cpp.s"
+	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\project1.dir\ruleNode.cpp.s /c C:\Users\james\cs236\project4\ruleNode.cpp
+<<
+
 # Object files for target project1
 project1_OBJECTS = \
 "CMakeFiles\project1.dir\ColonAutomaton.cpp.obj" \
@@ -702,7 +740,9 @@ project1_OBJECTS = \
 "CMakeFiles\project1.dir\Database.cpp.obj" \
 "CMakeFiles\project1.dir\Interpreter.cpp.obj" \
 "CMakeFiles\project1.dir\Parser.cpp.obj" \
-"CMakeFiles\project1.dir\DatalogProgram.cpp.obj"
+"CMakeFiles\project1.dir\DatalogProgram.cpp.obj" \
+"CMakeFiles\project1.dir\graph.cpp.obj" \
+"CMakeFiles\project1.dir\ruleNode.cpp.obj"
 
 # External object files for target project1
 project1_EXTERNAL_OBJECTS =
@@ -739,9 +779,11 @@ project1.exe: CMakeFiles\project1.dir\Database.cpp.obj
 project1.exe: CMakeFiles\project1.dir\Interpreter.cpp.obj
 project1.exe: CMakeFiles\project1.dir\Parser.cpp.obj
 project1.exe: CMakeFiles\project1.dir\DatalogProgram.cpp.obj
+project1.exe: CMakeFiles\project1.dir\graph.cpp.obj
+project1.exe: CMakeFiles\project1.dir\ruleNode.cpp.obj
 project1.exe: CMakeFiles\project1.dir\build.make
 project1.exe: CMakeFiles\project1.dir\objects1.rsp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\james\cs236\project4\cmake-build-debug-visual-studio\CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Linking CXX executable project1.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\james\cs236\project4\cmake-build-debug-visual-studio\CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Linking CXX executable project1.exe"
 	"C:\Program Files\JetBrains\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\project1.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100183~1.0\x86\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100183~1.0\x86\mt.exe --manifests  -- C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\project1.dir\objects1.rsp @<<
  /out:project1.exe /implib:project1.lib /pdb:C:\Users\james\cs236\project4\cmake-build-debug-visual-studio\project1.pdb /version:0.0  /machine:X86 /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
 <<

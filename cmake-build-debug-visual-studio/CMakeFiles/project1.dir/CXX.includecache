@@ -57,6 +57,8 @@ Database.h
 C:/Users/james/cs236/project4/Database.h
 Relation.h
 C:/Users/james/cs236/project4/Relation.h
+graph.h
+C:/Users/james/cs236/project4/graph.h
 
 C:/Users/james/cs236/project4/Lexer.h
 vector
@@ -156,5 +158,23 @@ C:/Users/james/cs236/project4/Tuple.h
 vector
 -
 string
+-
+
+C:/Users/james/cs236/project4/graph.h
+Database.h
+C:/Users/james/cs236/project4/Database.h
+DatalogProgram.h
+C:/Users/james/cs236/project4/DatalogProgram.h
+Rule.h
+C:/Users/james/cs236/project4/Rule.h
+stdio.h
+C:/Users/james/cs236/project4/stdio.h
+ruleNode.h
+C:/Users/james/cs236/project4/ruleNode.h
+
+C:/Users/james/cs236/project4/ruleNode.h
+string
+-
+iostream
 -
 

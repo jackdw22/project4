@@ -78,6 +78,8 @@ CMakeFiles\project1.dir\Interpreter.cpp.obj: ..\Relation.h
 CMakeFiles\project1.dir\Interpreter.cpp.obj: ..\Rule.h
 CMakeFiles\project1.dir\Interpreter.cpp.obj: ..\Token.h
 CMakeFiles\project1.dir\Interpreter.cpp.obj: ..\Tuple.h
+CMakeFiles\project1.dir\Interpreter.cpp.obj: ..\graph.h
+CMakeFiles\project1.dir\Interpreter.cpp.obj: ..\ruleNode.h
 
 CMakeFiles\project1.dir\InvalidStringAutomaton.cpp.obj: ..\Automaton.h
 CMakeFiles\project1.dir\InvalidStringAutomaton.cpp.obj: ..\InvalidStringAutomaton.cpp
@@ -192,6 +194,21 @@ CMakeFiles\project1.dir\Token.cpp.obj: ..\Token.h
 CMakeFiles\project1.dir\Tuple.cpp.obj: ..\Tuple.cpp
 CMakeFiles\project1.dir\Tuple.cpp.obj: ..\Tuple.h
 
+CMakeFiles\project1.dir\graph.cpp.obj: ..\Automaton.h
+CMakeFiles\project1.dir\graph.cpp.obj: ..\Database.h
+CMakeFiles\project1.dir\graph.cpp.obj: ..\DatalogProgram.h
+CMakeFiles\project1.dir\graph.cpp.obj: ..\Header.h
+CMakeFiles\project1.dir\graph.cpp.obj: ..\Lexer.h
+CMakeFiles\project1.dir\graph.cpp.obj: ..\Parameter.h
+CMakeFiles\project1.dir\graph.cpp.obj: ..\Predicate.h
+CMakeFiles\project1.dir\graph.cpp.obj: ..\Relation.h
+CMakeFiles\project1.dir\graph.cpp.obj: ..\Rule.h
+CMakeFiles\project1.dir\graph.cpp.obj: ..\Token.h
+CMakeFiles\project1.dir\graph.cpp.obj: ..\Tuple.h
+CMakeFiles\project1.dir\graph.cpp.obj: ..\graph.cpp
+CMakeFiles\project1.dir\graph.cpp.obj: ..\graph.h
+CMakeFiles\project1.dir\graph.cpp.obj: ..\ruleNode.h
+
 CMakeFiles\project1.dir\invalidComment.cpp.obj: ..\Automaton.h
 CMakeFiles\project1.dir\invalidComment.cpp.obj: ..\Token.h
 CMakeFiles\project1.dir\invalidComment.cpp.obj: ..\invalidComment.cpp
@@ -210,7 +227,12 @@ CMakeFiles\project1.dir\main.cpp.obj: ..\Relation.h
 CMakeFiles\project1.dir\main.cpp.obj: ..\Rule.h
 CMakeFiles\project1.dir\main.cpp.obj: ..\Token.h
 CMakeFiles\project1.dir\main.cpp.obj: ..\Tuple.h
+CMakeFiles\project1.dir\main.cpp.obj: ..\graph.h
 CMakeFiles\project1.dir\main.cpp.obj: ..\main.cpp
+CMakeFiles\project1.dir\main.cpp.obj: ..\ruleNode.h
+
+CMakeFiles\project1.dir\ruleNode.cpp.obj: ..\ruleNode.cpp
+CMakeFiles\project1.dir\ruleNode.cpp.obj: ..\ruleNode.h
 
 CMakeFiles\project1.dir\schemesAutomaton.cpp.obj: ..\Automaton.h
 CMakeFiles\project1.dir\schemesAutomaton.cpp.obj: ..\Token.h

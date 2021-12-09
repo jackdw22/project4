@@ -261,6 +261,12 @@
 		<Unit filename="C:/Users/james/cs236/project4/Tuple.h">
 			<Option target="project1"/>
 		</Unit>
+		<Unit filename="C:/Users/james/cs236/project4/graph.cpp">
+			<Option target="project1"/>
+		</Unit>
+		<Unit filename="C:/Users/james/cs236/project4/graph.h">
+			<Option target="project1"/>
+		</Unit>
 		<Unit filename="C:/Users/james/cs236/project4/invalidComment.cpp">
 			<Option target="project1"/>
 		</Unit>
@@ -268,6 +274,12 @@
 			<Option target="project1"/>
 		</Unit>
 		<Unit filename="C:/Users/james/cs236/project4/main.cpp">
+			<Option target="project1"/>
+		</Unit>
+		<Unit filename="C:/Users/james/cs236/project4/ruleNode.cpp">
+			<Option target="project1"/>
+		</Unit>
+		<Unit filename="C:/Users/james/cs236/project4/ruleNode.h">
 			<Option target="project1"/>
 		</Unit>
 		<Unit filename="C:/Users/james/cs236/project4/schemesAutomaton.cpp">

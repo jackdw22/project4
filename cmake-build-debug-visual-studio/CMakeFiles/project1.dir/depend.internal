@@ -79,6 +79,8 @@ CMakeFiles/project1.dir/Interpreter.cpp.obj
  C:/Users/james/cs236/project4/Rule.h
  C:/Users/james/cs236/project4/Token.h
  C:/Users/james/cs236/project4/Tuple.h
+ C:/Users/james/cs236/project4/graph.h
+ C:/Users/james/cs236/project4/ruleNode.h
 CMakeFiles/project1.dir/InvalidStringAutomaton.cpp.obj
  C:/Users/james/cs236/project4/Automaton.h
  C:/Users/james/cs236/project4/InvalidStringAutomaton.cpp
@@ -192,6 +194,21 @@ CMakeFiles/project1.dir/Token.cpp.obj
 CMakeFiles/project1.dir/Tuple.cpp.obj
  C:/Users/james/cs236/project4/Tuple.cpp
  C:/Users/james/cs236/project4/Tuple.h
+CMakeFiles/project1.dir/graph.cpp.obj
+ C:/Users/james/cs236/project4/Automaton.h
+ C:/Users/james/cs236/project4/Database.h
+ C:/Users/james/cs236/project4/DatalogProgram.h
+ C:/Users/james/cs236/project4/Header.h
+ C:/Users/james/cs236/project4/Lexer.h
+ C:/Users/james/cs236/project4/Parameter.h
+ C:/Users/james/cs236/project4/Predicate.h
+ C:/Users/james/cs236/project4/Relation.h
+ C:/Users/james/cs236/project4/Rule.h
+ C:/Users/james/cs236/project4/Token.h
+ C:/Users/james/cs236/project4/Tuple.h
+ C:/Users/james/cs236/project4/graph.cpp
+ C:/Users/james/cs236/project4/graph.h
+ C:/Users/james/cs236/project4/ruleNode.h
 CMakeFiles/project1.dir/invalidComment.cpp.obj
  C:/Users/james/cs236/project4/Automaton.h
  C:/Users/james/cs236/project4/Token.h
@@ -211,7 +228,12 @@ CMakeFiles/project1.dir/main.cpp.obj
  C:/Users/james/cs236/project4/Rule.h
  C:/Users/james/cs236/project4/Token.h
  C:/Users/james/cs236/project4/Tuple.h
+ C:/Users/james/cs236/project4/graph.h
  C:/Users/james/cs236/project4/main.cpp
+ C:/Users/james/cs236/project4/ruleNode.h
+CMakeFiles/project1.dir/ruleNode.cpp.obj
+ C:/Users/james/cs236/project4/ruleNode.cpp
+ C:/Users/james/cs236/project4/ruleNode.h
 CMakeFiles/project1.dir/schemesAutomaton.cpp.obj
  C:/Users/james/cs236/project4/Automaton.h
  C:/Users/james/cs236/project4/Token.h

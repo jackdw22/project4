@@ -69,4 +69,8 @@ add_executable(project1
         Parser.cpp
         Parser.h
         DatalogProgram.cpp
-        DatalogProgram.h)
+        DatalogProgram.h
+        graph.cpp
+        graph.h
+        ruleNode.cpp
+        ruleNode.h)

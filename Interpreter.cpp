@@ -8,6 +8,7 @@
 Interpreter::Interpreter(DatalogProgram* datalog) {
 this->datalog = datalog;
 this->database = new Database();
+this->Graph = new graph();
 
 //std::cout << queryString(datalog->queries.at(1)) << std::endl;
 
@@ -16,7 +17,9 @@ this->database = new Database();
 void Interpreter::go(){
     addHeader();
     addTuple();
-    checkRules();
+    doGraph();
+    //checkRules();
+
     doQueries();
 }
 
@@ -170,17 +173,17 @@ void Interpreter::doQueries(){
     }
 }
 
-std::vector<Relation*> Interpreter::doRules(Database* &database1){
+std::vector<Relation*> Interpreter::doRules(Database* &database1, std::vector<int>ruleVector){
     std::vector<Relation*> ruleCheck; // create away to check them
     //std::cout << "Rule Evaluation" << std::endl;
     int count1 = 0;
 
 
-    for (int i = 0; i < static_cast<int> (datalog->rules.size()); i++){
+    for (int i = 0; i < static_cast<int> (ruleVector.size()); i++){
 
         //std::cout << datalog->rules.at(i)->ruleOutput();
-        std::string ruleName = datalog->rules.at(i)->headPredicate->namePredicate;
-        std::string name = datalog->rules.at(i)->bodyPredicates.at(0)->namePredicate;
+        std::string ruleName = datalog->rules.at(ruleVector.at(i))->headPredicate->namePredicate;
+        std::string name = datalog->rules.at(ruleVector.at(i))->bodyPredicates.at(0)->namePredicate;
         Relation* startRelation;
         Relation* copyRelation;
         std::vector<std::string> order2;
@@ -191,23 +194,23 @@ std::vector<Relation*> Interpreter::doRules(Database* &database1){
             }
         }
 
-        if (datalog->rules.at(i)->bodyPredicates.size() > 1){
-            for(int j = 0; j < static_cast<int>(datalog->rules.at(i)->bodyPredicates.at(0)->parameters.size()); j++){
+        if (datalog->rules.at(ruleVector.at(i))->bodyPredicates.size() > 1){
+            for(int j = 0; j < static_cast<int>(datalog->rules.at(ruleVector.at(i))->bodyPredicates.at(0)->parameters.size()); j++){
                 order2.push_back(startRelation->header->values.at(j));
                 startRelation->header->values.at(j) = datalog->rules.at(
-                        i)->bodyPredicates.at(0)->parameters.at(j)->getParameter();
+                        ruleVector.at(i))->bodyPredicates.at(0)->parameters.at(j)->getParameter();
             }
         }
-        for (int j = 1; j < static_cast<int>(datalog->rules.at(i)->bodyPredicates.size()) ; j++) {
+        for (int j = 1; j < static_cast<int>(datalog->rules.at(ruleVector.at(i))->bodyPredicates.size()) ; j++) {
             Relation *combined;
-            std::string name2 = datalog->rules.at(i)->bodyPredicates.at(j)->namePredicate;
+            std::string name2 = datalog->rules.at(ruleVector.at(i))->bodyPredicates.at(j)->namePredicate;
 
             for (auto itr : database->data) {
                 if (itr.first == name2) {
                     Relation *nextRelation = itr.second->copy(itr.second);
-                    for(int l = 0; l < static_cast<int>(datalog->rules.at(i)->bodyPredicates.at(j)->parameters.size()); l++){
+                    for(int l = 0; l < static_cast<int>(datalog->rules.at(ruleVector.at(i))->bodyPredicates.at(j)->parameters.size()); l++){
                         nextRelation->header->values.at(l) = datalog->rules.at(
-                                i)->bodyPredicates.at(j)->parameters.at(l)->getParameter();
+                                ruleVector.at(i))->bodyPredicates.at(j)->parameters.at(l)->getParameter();
                     }
 
                     combined = startRelation->unite(nextRelation, ruleName);
@@ -217,8 +220,8 @@ std::vector<Relation*> Interpreter::doRules(Database* &database1){
             }
 
         }
-        if (datalog->rules.at(i)->bodyPredicates.size() > 1){
-            for(int j = 0; j < static_cast<int>(datalog->rules.at(i)->bodyPredicates.at(0)->parameters.size()); j++){
+        if (datalog->rules.at(ruleVector.at(i))->bodyPredicates.size() > 1){
+            for(int j = 0; j < static_cast<int>(datalog->rules.at(ruleVector.at(i))->bodyPredicates.at(0)->parameters.size()); j++){
                 copyRelation->header->values.at(j) = order2.at(j);
                 startRelation->header->values.at(j) = order2.at(j);
             }
@@ -232,10 +235,10 @@ std::vector<Relation*> Interpreter::doRules(Database* &database1){
 
 
         Relation* selectRelation = new Relation(startRelation->name, startRelation->header);
-        for (int j = 0; j < static_cast<int>(datalog->rules.at(i)->bodyPredicates.at(0)->parameters.size()); j++) {
-            if(datalog->rules.at(i)->bodyPredicates.at(0)->parameters.at(j)->isConstant() == true){
+        for (int j = 0; j < static_cast<int>(datalog->rules.at(ruleVector.at(i))->bodyPredicates.at(0)->parameters.size()); j++) {
+            if(datalog->rules.at(ruleVector.at(i))->bodyPredicates.at(0)->parameters.at(j)->isConstant() == true){
                 for(auto t : startRelation->tuples){
-                    if(datalog->rules.at(i)->bodyPredicates.at(0)->parameters.at(j)->getParameter() == t.values.at(j)){
+                    if(datalog->rules.at(ruleVector.at(i))->bodyPredicates.at(0)->parameters.at(j)->getParameter() == t.values.at(j)){
                         selectRelation->tuples.insert(t);
                     }
                 }
@@ -243,24 +246,14 @@ std::vector<Relation*> Interpreter::doRules(Database* &database1){
             }
 
 
-            /*
-            if (datalog->rules.at(i)->headPredicate->parameters.at(j)->isConstant() == false &&
-                datalog->rules.at(i)->headPredicate->parameters.at(j)->isCapital() == false) {
-                variables.insert({datalog->rules.at(i)->headPredicate->parameters.at(j)->getParameter(), j});
-                order.push_back(datalog->rules.at(i)->headPredicate->parameters.at(j)->getParameter());
-                countVariables++;
-            } else if (datalog->rules.at(i)->headPredicate->parameters.at(j)->isConstant() == false &&
-                       datalog->rules.at(i)->headPredicate->parameters.at(j)->isCapital() == true) {
-                order.push_back(startRelation->header->values.at(j));
-            }*/
         }
-        for(int j = 0; j < static_cast<int>(datalog->rules.at(i)->bodyPredicates.at(0)->parameters.size()); j++){
+        for(int j = 0; j < static_cast<int>(datalog->rules.at(ruleVector.at(i))->bodyPredicates.at(0)->parameters.size()); j++){
             startRelation->header->values.at(j) = datalog->rules.at(
-                    i)->bodyPredicates.at(0)->parameters.at(j)->getParameter();
+                    ruleVector.at(i))->bodyPredicates.at(0)->parameters.at(j)->getParameter();
         }
-        for (int j = 0; j <static_cast<int>( datalog->rules.at(i)->headPredicate->parameters.size()); j++) {
+        for (int j = 0; j <static_cast<int>( datalog->rules.at(ruleVector.at(i))->headPredicate->parameters.size()); j++) {
             for(int l = 0; l < static_cast<int> (startRelation->header->values.size()); l++){
-                if(datalog->rules.at(i)->headPredicate->parameters.at(j)->getParameter() == startRelation->header->values.at(l)){
+                if(datalog->rules.at(ruleVector.at(i))->headPredicate->parameters.at(j)->getParameter() == startRelation->header->values.at(l)){
                     place.push_back(l);
                 }
             }
@@ -268,15 +261,15 @@ std::vector<Relation*> Interpreter::doRules(Database* &database1){
 
 
         if(startRelation->header->values.size() == order.size()) {
-            for (int j = 0; j < static_cast<int>(datalog->rules.at(i)->bodyPredicates.at(0)->parameters.size()); j++) {
-                startRelation->header->values.at(j) = datalog->rules.at(i)->headPredicate->parameters.at(j)->getParameter(); // got to scrape this from schemes somehow
+            for (int j = 0; j < static_cast<int>(datalog->rules.at(ruleVector.at(i))->bodyPredicates.at(0)->parameters.size()); j++) {
+                startRelation->header->values.at(j) = datalog->rules.at(ruleVector.at(i))->headPredicate->parameters.at(j)->getParameter(); // got to scrape this from schemes somehow
             }
         }
 
 
 
 
-        startRelation = startRelation->project2(startRelation, datalog->rules.at(i)->headPredicate, order, place);
+        startRelation = startRelation->project2(startRelation, datalog->rules.at(ruleVector.at(i))->headPredicate, order, place);
 
         Relation* output = new Relation(startRelation->name, startRelation->header);
 
@@ -321,22 +314,39 @@ std::vector<Relation*> Interpreter::doRules(Database* &database1){
     std::cout << std::endl << std::endl;
 }
 
-void Interpreter::checkRules(){
+void Interpreter::checkRules(std::set<int> SCCRules){
+    std::set<int>::iterator itr;
+    std::vector<int> currentRules;
+    for (itr = SCCRules.begin(); itr != SCCRules.end(); itr++){
+        currentRules.push_back(*itr);
+    }
+
     std::vector<Relation*> rule;
-    std::cout << "Rule Evaluation" << std::endl;
+
     int count = 0;
-    rule = doRules(this->database);
+    rule = doRules(this->database, currentRules);
     for (int r = 0; r < static_cast<int>(rule.size()); r++){
-        std::cout << datalog->rules.at(r)->ruleOutput();
+        std::cout << datalog->rules.at(currentRules.at(r))->ruleOutput();
         if (rule.at(r)->tuples.size() > 0){
             std::cout << rule.at(r)->toString(0);
         }
     }
     count++;
     bool again = false;
+
+    if (currentRules.size() == 1){
+        std::map<int, std::set<int>>::iterator itr2;
+        for (itr2 = Graph->adjacencyList.begin(); itr2 != Graph->adjacencyList.end(); itr2++){
+            if(itr2->first == currentRules.at(0)){
+               again = itr2->second.empty();
+            }
+        }
+    }
+
+
     while(again == false){
         std::vector <Relation*> newRule;
-        newRule = doRules(this->database);
+        newRule = doRules(this->database, currentRules);
         again = true;
         for (int r = 0; r < static_cast<int>(rule.size()); r++){
             if(newRule.at(r)->tuples.size() == 0){
@@ -351,6 +361,41 @@ void Interpreter::checkRules(){
         count++;
     }
 
-    std::cout << std::endl << "Schemes populated after " << count <<" passes through the Rules." << std::endl << std::endl;
+    std::cout << count <<" passes: ";
+
+}
+
+void Interpreter::doGraph() {
+    Graph->makeAdjacency(datalog->rules);
+    Graph->printGraph();
+    Graph->reverse(datalog->rules);
+    std::vector<int> PostOrder = Graph->getPostOrder();
+    std::vector<std::set<int>> SCC = Graph->getSCC(PostOrder);
+    graphToRules(SCC);
+
+
+}
+
+void Interpreter::graphToRules(std::vector<std::set<int>> SCC) {
+    std::cout << "Rule Evaluation" << std::endl;
+    for (int i = 0; i < static_cast<int>(SCC.size()); i++){
+        std::cout << "SCC: ";
+        std::set<int>::iterator itr;
+        std::string output = "";
+        for (itr = SCC.at(i).begin(); itr != SCC.at(i).end(); itr++){
+            output.push_back('R');
+            output.push_back(*itr + '0');
+            output.push_back(',');
+        }
+        if(output.size() == 0){
+            output.push_back(' ');
+        }
+        output.pop_back();
+        std::cout << output << std::endl;
+        checkRules(SCC.at(i));
+        std::cout << output << std::endl;
+
+    }
+    std::cout << std::endl;
 
 }
