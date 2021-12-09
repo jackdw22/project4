@@ -340,7 +340,7 @@ void Interpreter::checkRules(std::set<int> SCCRules){
             if(itr2->first == currentRules.at(0)){
                if(itr2->second.empty()){
                    again = true;
-               }else if(itr2->second.size() == 1){
+               }else if(itr2->second.size() > 1){
                    if(itr2->second.find(currentRules.at(0)) == itr2->second.end()){
                        again = true;
                    }
