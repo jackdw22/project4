@@ -357,9 +357,9 @@ void Interpreter::checkRules(std::set<int> SCCRules){
         again = true;
         for (int r = 0; r < static_cast<int>(rule.size()); r++){
             if(newRule.at(r)->tuples.size() == 0){
-                std::cout << datalog->rules.at(r)->ruleOutput();
+                std::cout << datalog->rules.at(currentRules.at(r))->ruleOutput();
             }else{
-                std::cout << datalog->rules.at(r)->ruleOutput();
+                std::cout << datalog->rules.at(currentRules.at(r))->ruleOutput();
                 std::cout << newRule.at(r)->toString(0);
                 rule.at(r) = newRule.at(r);
                 again = false;
