@@ -338,7 +338,14 @@ void Interpreter::checkRules(std::set<int> SCCRules){
         std::map<int, std::set<int>>::iterator itr2;
         for (itr2 = Graph->adjacencyList.begin(); itr2 != Graph->adjacencyList.end(); itr2++){
             if(itr2->first == currentRules.at(0)){
-               again = itr2->second.empty();
+               if(itr2->second.empty()){
+                   again = true;
+               }else if(itr2->second.size() == 1){
+                   if(itr2->second.find(currentRules.at(0)) == itr2->second.end()){
+                       again = true;
+                   }
+
+               }
             }
         }
     }

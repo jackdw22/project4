@@ -273,7 +273,7 @@ Transitive('1',P)? Yes(9)
 A('1','2')? Yes(1)
 Symmetric('2','1')? Yes(1)
 SymTran(X,Y)? Yes(100)
-  X='1', Y='1'
+  X='1', Y='1'm
   X='1', Y='10'
   X='1', Y='2'
   X='1', Y='3'
